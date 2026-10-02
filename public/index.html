@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Co-op Maintenance</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Co-op Maintenance</h1>
+        </div>
+        <nav class="nav">
+          <button id="showLoginBtn" class="nav-btn">Login</button>
+          <button id="showRegisterBtn" class="nav-btn secondary">Register</button>
+          <button id="logoutBtn" class="nav-btn danger hidden">Logout</button>
+        </nav>
+      </header>
+
+      <main class="container">
+        <section id="authView" class="panel">
+          <div class="auth-tabs">
+            <button class="tab active" data-auth-tab="login">Login</button>
+            <button class="tab" data-auth-tab="register">Register</button>
+          </div>
+
+          <div id="loginFormWrap" class="auth-form active">
+            <h2>Login</h2>
+            <form id="loginForm">
+              <label>
+                Username
+                <input type="text" id="loginUsername" required />
+              </label>
+              <label>
+                Password
+                <input type="password" id="loginPassword" required />
+              </label>
+              <button type="submit">Login</button>
+            </form>
+          </div>
+
+          <div id="registerFormWrap" class="auth-form">
+            <h2>Register</h2>
+            <form id="registerForm">
+              <div class="grid">
+                <label>
+                  Full Name
+                  <input type="text" id="registerName" required />
+                </label>
+                <label>
+                  Username
+                  <input type="text" id="registerUsername" required />
+                </label>
+                <label>
+                  Email
+                  <input type="email" id="registerEmail" required />
+                </label>
+                <label>
+                  Unit / Apartment
+                  <input type="text" id="registerUnit" />
+                </label>
+              </div>
+              <label>
+                Password
+                <input type="password" id="registerPassword" required />
+              </label>
+              <label>
+                Role
+                <select id="registerRole">
+                  <option value="resident">Resident</option>
+                  <option value="superintendent">Superintendent</option>
+                </select>
+              </label>
+              <button type="submit">Create Account</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="residentView" class="hidden">
+          <div class="panel">
+            <h2>Submit a Maintenance Issue</h2>
+
+            <form id="issueForm" enctype="multipart/form-data">
+              <div class="grid">
+                <label>
+                  Unit
+                  <input type="text" id="issueUnit" name="unit" required />
+                </label>
+                <label>
+                  Issue Title
+                  <input type="text" id="issueTitle" name="title" required />
+                </label>
+                <label>
+                  Category
+                  <select id="issueCategory" name="category" required>
+                    <option value="">Select category</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Heating & Cooling">Heating & Cooling</option>
+                    <option value="Appliance">Appliance</option>
+                    <option value="Safety">Safety</option>
+                    <option value="General Maintenance">General Maintenance</option>
+                    <option value="Exterior">Exterior</option>
+                  </select>
+                </label>
+                <label>
+                  Urgency
+                  <select id="issueUrgency" name="urgency" required>
+                    <option value="">Select urgency</option>
+                    <option value="Low">Low</option>
+                    <option value="Normal">Normal</option>
+                    <option value="High">High</option>
+                    <option value="Emergency">Emergency</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                Description
+                <textarea id="issueDescription" name="description" rows="5" required></textarea>
+              </label>
+
+              <label>
+                Upload Photo
+                <input type="file" id="issuePhoto" name="photo" accept="image/*" />
+              </label>
+
+              <button type="submit">Submit Issue</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="superintendentView" class="hidden">
+          <div class="panel">
+            <div class="dashboard-header">
+              <h2>Superintendent Dashboard</h2>
+
+              <div class="filters">
+                <select id="filterStatus">
+                  <option value="All">All Statuses</option>
+                  <option value="New">New</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+
+                <select id="filterCategory">
+                  <option value="All">All Categories</option>
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Electrical">Electrical</option>
+                  <option value="Heating & Cooling">Heating & Cooling</option>
+                  <option value="Appliance">Appliance</option>
+                  <option value="Safety">Safety</option>
+                  <option value="General Maintenance">General Maintenance</option>
+                  <option value="Exterior">Exterior</option>
+                </select>
+
+                <input type="text" id="filterUnit" placeholder="Filter by unit" />
+              </div>
+            </div>
+
+            <div id="issuesList" class="issues-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
